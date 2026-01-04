@@ -14,8 +14,8 @@ export default async function handler(req, res) {
 
   try {
     await resend.emails.send({
-      from: "Webbetto <onboarding@resend.dev>",
-      to: process.env.TO_EMAIL,
+      from: "Webbetto <onboarding@resend.dev>", // works for testing
+      to: "omar.bouchouari@hotmail.com",
       subject: `Webbetto contact from ${name}`,
       reply_to: email,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
