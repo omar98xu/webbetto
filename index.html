@@ -179,8 +179,12 @@
       <h2>Contact</h2>
       <div class="underline"></div>
 
-      <!-- mailto opens email client (normal browser behavior) -->
-      <form action="mailto:omar.bouchouari@hotmail.com" method="POST" enctype="text/plain">
+      <form
+        id="contactForm"
+        action="mailto:omar.bouchouari@hotmail.com"
+        method="POST"
+        enctype="text/plain"
+      >
         <div class="grid-2">
           <input required name="Name" placeholder="Your name" />
           <input required name="Business" placeholder="Business name" />
@@ -191,13 +195,20 @@
           <input name="Phone" placeholder="Phone (optional)" />
         </div>
 
-        <textarea name="Message" placeholder="Tell us what you need (website, app, consulting)…"></textarea>
+        <textarea
+          name="Message"
+          placeholder="Tell us what you need (website, app, consulting)…"
+          required
+        ></textarea>
 
         <button class="btn btn-accent" type="submit">Send message</button>
+
         <div class="small">
           This opens your email app. For automatic sending, we can switch to Formspree/Vercel API later.
         </div>
       </form>
+
+
 
       <footer>
         © <span id="year"></span> Webbetto — Alessandro & Omar

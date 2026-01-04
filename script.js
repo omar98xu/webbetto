@@ -2,7 +2,7 @@
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// HERO slideshow (10 images, change every 5 seconds)
+// HERO slideshow
 const heroImages = [
   "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1920&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1920&auto=format&fit=crop",
@@ -20,13 +20,10 @@ const bgA = document.getElementById("heroBgA");
 const bgB = document.getElementById("heroBgB");
 
 if (bgA && bgB) {
-  // Preload images (reduces flicker)
   heroImages.forEach((url) => { const img = new Image(); img.src = url; });
 
   let index = 0;
   let showingA = true;
-
-  // Set initial
   bgA.style.backgroundImage = `url('${heroImages[0]}')`;
 
   setInterval(() => {
@@ -43,3 +40,40 @@ if (bgA && bgB) {
     showingA = !showingA;
   }, 5000);
 }
+
+// Contact form -> API
+
+
+const form = document.getElementById("contactForm");
+const statusEl = document.getElementById("formStatus");
+
+if (form) {
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (statusEl) statusEl.textContent = "Sending...";
+
+    const payload = {
+      name: form.elements["name"].value.trim(),
+      email: form.elements["email"].value.trim(),
+      message: form.elements["message"].value.trim(),
+    };
+
+    try {
+      const r = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.error || "Failed");
+
+      if (statusEl) statusEl.textContent = "✅ Sent! We’ll reply soon.";
+      form.reset();
+    } catch (err) {
+      if (statusEl) statusEl.textContent = "❌ Error sending. Try again later.";
+      console.error(err);
+    }
+  });
+}
+
