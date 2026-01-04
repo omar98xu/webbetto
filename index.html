@@ -179,35 +179,12 @@
       <h2>Contact</h2>
       <div class="underline"></div>
 
-      <form
-        id="contactForm"
-        action="mailto:omar.bouchouari@hotmail.com"
-        method="POST"
-        enctype="text/plain"
-      >
-        <div class="grid-2">
-          <input required name="Name" placeholder="Your name" />
-          <input required name="Business" placeholder="Business name" />
-        </div>
-
-        <div class="grid-2">
-          <input required name="Email" type="email" placeholder="Email" />
-          <input name="Phone" placeholder="Phone (optional)" />
-        </div>
-
-        <textarea
-          name="Message"
-          placeholder="Tell us what you need (website, app, consulting)…"
-          required
-        ></textarea>
-
-        <button class="btn btn-accent" type="submit">Send message</button>
-
-        <div class="small">
-          This opens your email app. For automatic sending, we can switch to Formspree/Vercel API later.
-        </div>
+      <form id="contactForm">
+        <input name="name" placeholder="Your name" required />
+        <input name="email" type="email" placeholder="Your email" required />
+        <textarea name="message" placeholder="Your message" required></textarea>
+        <button type="submit">Send</button>
       </form>
-
 
 
       <footer>
